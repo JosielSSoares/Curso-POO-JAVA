@@ -11,7 +11,7 @@ import java.util.Scanner;
         //                5
         //                7
 
-public class localizarInteiros {
+public class localizarImpares {
     public static void main(String[] args) throws Exception {
 
     Scanner sc = new Scanner(System.in);
@@ -21,13 +21,16 @@ public class localizarInteiros {
         System.out.println("Digite o valor de X:");
         x = sc.nextInt();
 
+        int produto;
         for (int i=1; i<=x; i++){
             
             if (i % 2 != 0) {
-                
-                System.out.println("\n"+ i);
+                produto = i * i;
 
-            }else{}
+                System.out.println("\nImpares:"+i);
+                System.out.println("Muiltiplicação dos Impares:" + produto);
+
+            }else  {}
         }
     sc.close();
     }
