@@ -1,4 +1,3 @@
-
 import java.util.Locale;
 import java.util.Scanner;
 
@@ -13,13 +12,20 @@ public class nFatorial {
         System.out.print("Qual numero vc quer saber o fatorial:!" );
         n = sc.nextInt();
 
-        for(int i = 1; i <= n; i++){
+        if (n == 0) {
+            System.out.println(1);
+            
+        } else {
+            for(int i = 1; i <= n; i++){
 
-            fatorial = fatorial * i;
-            System.out.println(fatorial);
-
+                fatorial = fatorial * i;
+                System.out.println(fatorial);
+                
+            }
+            
         }
-        System.out.println("Programa encerrado");
         
+        System.out.println("Programa encerrado");
+        sc.close();
     }
 }
