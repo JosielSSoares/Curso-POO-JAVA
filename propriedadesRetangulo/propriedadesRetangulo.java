@@ -20,7 +20,8 @@ public class propriedadesRetangulo {
             double diagonal = retangulo.Diagonal();
 
 
-            System.out.printf("\nÁrea: " + area + "\nPerímetro: " + perimetro + "\nDiagonal: " + diagonal);
+            //System.out.printf("\nÁrea: " + area + "\nPerímetro: " + perimetro + "\nDiagonal: " + diagonal);
+            System.out.printf("\nÁrea: %.2f\nPerímetro: %.2f\nDiagonal: %.2f", area, perimetro, diagonal);
         }
 
     }
