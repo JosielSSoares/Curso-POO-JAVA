@@ -10,6 +10,21 @@ public class Product {
         this.quantity = 0;
     }
 
+    public static class ProductService {
+
+        public static Product createProduct(String name, double price) {
+            return new Product(name, price);
+        }
+    
+        public static void addStock(Product product, int quantity) {
+            product.addProducts(quantity);
+        }
+    
+        public static  void removeStock(Product product, int quantity) {
+            product.removeProducts(quantity);
+        }
+    }
+
     public void setName(String name) {
         if (name == null || name.trim().isEmpty()) {
             throw new IllegalArgumentException("O nome do produto não pode estar vazio.");
@@ -54,4 +69,6 @@ public class Product {
         return String.format("Produto: %s | Preço: R$ %.2f | Quantidade: %d | Valor Total em Estoque: R$ %.2f",
                 name, price, quantity, totalValueInStock());
     }
+
+    
 }
