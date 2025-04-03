@@ -3,91 +3,55 @@ public class Product {
     private double price;
     private int quantity;
 
-    //Constructors
-    public Product(String name, double price, int quantity) {
-        setName(name);
-        setPrice(price);
-        setQuantity(quantity);
-    }
-
-    //Sobrecarga
+    @SuppressWarnings("OverridableMethodCallInConstructor")
     public Product(String name, double price) {
         setName(name);
         setPrice(price);
         this.quantity = 0;
     }
 
-    //Getter e Setters
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         if (name == null || name.trim().isEmpty()) {
-            throw new IllegalArgumentException("O nome do produto não pode ser vazio.");
-        }
-        if (Character.isDigit(name.charAt(0))) {
-            throw new IllegalArgumentException("O nome do produto não pode começar com um número.");
-        }
-        if (name.matches(".*\\d.*")) {
-            throw new IllegalArgumentException("O nome do produto não pode conter números.");
+            throw new IllegalArgumentException("O nome do produto não pode estar vazio.");
         }
         this.name = name;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
     public void setPrice(double price) {
         if (price <= 0) {
-            throw new IllegalArgumentException("O preço não pode ser menor ou igual a zero.");
+            throw new IllegalArgumentException("O preço deve ser maior que zero.");
         }
         this.price = price;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        if (quantity < 0) {
-            throw new IllegalArgumentException("A quantidade não pode ser menor que zero.");
-        }
-        this.quantity = quantity;
-    }
-
-    //Funções ou Métodos
-    public double totalValueInStock() {
-        return price * quantity;
+    public int getQuantity(){
+        return this.quantity;
     }
 
     public void addProducts(int quantity) {
-        if (quantity < 0) {
-            throw new IllegalArgumentException("A quantidade a ser adicionada não pode ser negativa.");
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("A quantidade adicionada deve ser positiva.");
         }
         this.quantity += quantity;
     }
 
     public void removeProducts(int quantity) {
-        if (quantity < 0) {
-            throw new IllegalArgumentException("A quantidade a ser removida não pode ser negativa.");
+        if (quantity <= 0) {
+            throw new IllegalArgumentException("A quantidade removida deve ser positiva.");
         }
-        if (this.quantity - quantity < 0) {
-            throw new IllegalArgumentException("Não há estoque suficiente para remover essa quantidade.");
+        if (quantity > this.quantity) {
+            throw new IllegalArgumentException("Quantidade insuficiente em estoque.");
         }
         this.quantity -= quantity;
     }
 
-    //Declara mminha propria versão do metodo toSring
+    public double totalValueInStock() {
+        return price * quantity;
+    }
+
     @Override
     public String toString() {
-        return name
-                + ", $"
-                + String.format("%.2f", price)
-                + "\n"
-                + quantity
-                + " Unidades, Total: $"
-                + String.format("%.2f", totalValueInStock());
+        return String.format("Produto: %s | Preço: R$ %.2f | Quantidade: %d | Valor Total em Estoque: R$ %.2f",
+                name, price, quantity, totalValueInStock());
     }
 }
